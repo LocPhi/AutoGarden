@@ -84,7 +84,6 @@
 
 from tkinter import *
 
-
 def raise_frame(frame):
     frame.tkraise()
 
@@ -102,7 +101,13 @@ for frame in (f1, f2, f3, f4):
 l = LabelFrame(f1, text="My plants", padx=200, pady=150)
 l.pack(fill="both", expand="yes")
 
-Button(l, text='Go to frame 2', command=lambda:raise_frame(f2)).pack()
+b1=Button(l, text='Go to frame 2', command=lambda:raise_frame(f2))
+b1.pack()
+
+b2 = Button(l, text='Go to frame 2', command=lambda:raise_frame(f2)).pack()
+b3 = Button(l, text='Go to frame 2', command=lambda:raise_frame(f2)).pack()
+b4 = Button(l, text='Go to frame 2', command=lambda:raise_frame(f2)).pack()
+
 
 Label(f2, text='FRAME 2').pack()
 Button(f2, text='Go to frame 3', command=lambda:raise_frame(f3)).pack()
