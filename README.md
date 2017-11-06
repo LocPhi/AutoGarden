@@ -1,5 +1,6 @@
 You can find here the code for the AutoGarden Graphic Interface
 
-Current progession : fin a way to display different information in the same windows. For exemple, when you click "Chose Plant", it displays the "Choose Plant" menu in the same windows, and not in a difefrent one.
+Current progession : finished the first Frame "My plants"
+CAUTION : BUTTONS DON'T FIT PERFECTLY IN MAC OS
 
 Developped by LocPhi

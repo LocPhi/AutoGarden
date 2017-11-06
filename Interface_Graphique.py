@@ -10,6 +10,7 @@ def raise_frame(frame):
 
 # Main Window
 root = Tk()
+root.geometry('800x480')
 
 # All the frame that depend on the main window
 f1 = Frame(root)
