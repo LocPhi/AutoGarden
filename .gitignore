@@ -1,0 +1,5 @@
+/.metadata/
+/data/
+.project
+.pydevproject
+/src/__pycache__/

@@ -1,10 +1,9 @@
 '''
 Created on 8 nov. 2017
-
 @author: Vincent RICHAUD
 '''
-from builtins import int
-from src.Plant import Plant
+
+from Plant import Plant
 
 class Pot(object):
     '''
