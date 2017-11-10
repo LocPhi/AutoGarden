@@ -1,8 +1,10 @@
 /.metadata/
-/data/
+
 .project
 .pydevproject
-/src/__pycache__/
-src/__pycache__/Plant.cpython-36.pyc
-src/__pycache__/Plant.cpython-36.pyc
+data/plants
 src/test.py
+src/__pycache__/Pot.cpython-36.pyc
+src/__pycache__/PlantsDict.cpython-36.pyc
+src/__pycache__/Plant.cpython-36.pyc
+src/__pycache__/__init__.cpython-36.pyc
