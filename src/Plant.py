@@ -23,10 +23,6 @@ class Plant(object):
         define the name of the plant and its ideal caracteristics to grow
         humidity, temperature and luminosity
         '''
-        self._name = ""
-        self._temperature = ""
-        self._humidity = ""
-        self._luminosity = ""
         self._setName(name)
         self._setTemperature(temperature)
         self._setHumidity(humidity)
