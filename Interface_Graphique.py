@@ -1,7 +1,7 @@
 # ------- Grenoble INP - ESISAR -------
 # -- PX504 : AutoGarden ---
 # ---- Author : Loc Phi ----
-# -- Date : 10/10/2017 --
+# -- Date : 13/10/2017 --
 
 from tkinter import *
 
@@ -56,12 +56,10 @@ myButtons.grid_columnconfigure(1, weight=1)
 
 # ------------- PLANT FRAME WINDOW -------------
 
-f2.grid(row=0, column=0, sticky='news')
-
 graph = Canvas(f2, bg='ivory')
 
 back = Button(f2, text="<-", command=lambda:raise_frame(f1))
-chose = Button(f2, text="Chose Plant")
+chose = Button(f2, text="Chose Plant", command=lambda:raise_frame(f3))
 current = Button(f2, text="Current Plant : ")
 temp = Button(f2, text="Temperature")
 hum = Button(f2, text="Humidity")
@@ -91,16 +89,33 @@ f2.grid_columnconfigure(2, weight=1)
 f2.grid_columnconfigure(3, weight=1)
 f2.grid_columnconfigure(4, weight=1)
 
-# ------------- CHANGE WINDOW -------------
+# ------------- CHOSE PLANT WINDOW -------------
 
-#Label(f2, text='FRAME 2').pack()
-#Button(f2, text='Go to frame 3', command=lambda:raise_frame(f3)).pack()
+listeOfPlant = Canvas(f3, bg='ivory')
 
-Label(f3, text='FRAME 3').pack(side='left')
-Button(f3, text='Go to frame 4', command=lambda:raise_frame(f4)).pack(side='left')
+back = Button(f3, text="<-", command=lambda:raise_frame(f2))
+confirm = Button(f3, text="Confirm", command=lambda:raise_frame(f2))
 
-Label(f4, text='FRAME 4').pack()
-Button(f4, text='Goto to frame 1', command=lambda:raise_frame(f1)).pack()
+back.grid(column=0, row=0, columnspan=1, sticky="news", padx=5, pady=5)
+confirm.grid(column=0, row=3, columnspan=2, sticky="news", padx=5, pady=5)
+listeOfPlant.grid(column=2, row=0, columnspan=3, rowspan=4, sticky="news", padx=5, pady=5)
+
+root.grid_rowconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=1)
+
+f3.grid_rowconfigure(0, weight=1)
+f3.grid_rowconfigure(1, weight=1)
+f3.grid_rowconfigure(2, weight=1)
+f3.grid_rowconfigure(3, weight=1)
+f3.grid_rowconfigure(4, weight=1)
+f3.grid_rowconfigure(5, weight=1)
+
+f3.grid_columnconfigure(0, weight=1)
+f3.grid_columnconfigure(1, weight=1)
+f3.grid_columnconfigure(2, weight=1)
+f3.grid_columnconfigure(3, weight=1)
+f3.grid_columnconfigure(4, weight=1)
+
 
 raise_frame(f1)
 root.mainloop()
