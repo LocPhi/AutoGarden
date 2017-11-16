@@ -4,47 +4,44 @@ Created on 8 nov. 2017
 '''
 
 from Plant import Plant
+from Position import Position
 
 class Pot(object):
     '''
     This class represent a pot
     '''
-    NUMBER_OF_POTS = 4
 
-    def __init__(self, number, currentPlant):
+    def __init__(self, position, currentPlant=None):
         '''
         Constructor
         Define the caracteristics of the pot
         '''
-        self._number = number
-        self._currentPlant = currentPlant
+        self._setCurrentPlant(currentPlant)
+        self._setPosition(position)
         
     def __str__(self, *args, **kwargs):
         return str(self.__dict__)
     
 #Setters and Getters
-    def _setNumber(self, n):
-        if type(n) is int:
-            if n in range(0, Pot.NUMBER_OF_POTS):
-                self._number = n
-            else:
-                raise ValueError("Param 'n' given is not in range(0, {})".format(Pot.NUMBER_OF_POTS))
+    def _setPosition(self, p):
+        if type(p) is Position:
+            self._position = p
         else:
-            raise TypeError("Param 'n' given is not of type int")
+            raise TypeError("Param 'p' given is not of type Position")
     
-    def _getNumber(self):
-        return self._number
+    def _getPosition(self):
+        return self._position
     
     def _setCurrentPlant(self, p):
-        if type(p) is Plant:
+        if type(p) is Plant or p is None:
             self._currentPlant = p
         else:
-            raise TypeError("Param 'p' given is not of type src.Plant")
+            raise TypeError("Param 'p' given is not of type Plant or None")
     
     def _getCurrentPlant(self):
         return self._currentPlant
     
 #properties
-    number = property(_getNumber, _setNumber)
+    position = property(_getPosition, _setPosition)
     currentPlant = property(_getCurrentPlant, _setCurrentPlant)
     

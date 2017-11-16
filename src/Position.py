@@ -28,7 +28,7 @@ class Position(object):
             if x in range(0,100):
                 self._x = x
             else:
-                raise ValueError("*param 'x' given is out of range (0,100)")
+                raise ValueError("Param 'x' given is out of range (0,100)")
         else:
             raise TypeError("Param 'x' given is not of type int")
     
@@ -40,7 +40,7 @@ class Position(object):
             if y in range(0,100):
                 self._y = y
             else:
-                raise ValueError("*param 'y' given is out of range (0,100)")
+                raise ValueError("Param 'y' given is out of range (0,100)")
         else:
             raise TypeError("Param 'y' given is not of type int")
         
