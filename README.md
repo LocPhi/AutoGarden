@@ -1,5 +1,6 @@
-You can find here the code for the AutoGarden Graphic Interface
+You can find here the code for the AutoGarden project
 
-Current progession : finished the "graphic model" for the 3 frames available for the user".
+Current progession : Add the list of Plant available in the "database" with Plant and PlantDict object.
+Next step : Developping a list of measures object -> integration in the graph of the graphic interface.
 
-Developped by LocPhi
+Developped by LocPhi & vincrichaud
