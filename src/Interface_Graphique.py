@@ -4,6 +4,10 @@
 # -- Date : 13/10/2017 --
 
 from tkinter import *
+from PlantsDict import PlantsDict
+from Plant import Plant
+
+my_font = "{courier new} 55"
 
 def raise_frame(frame):
     frame.tkraise()
@@ -91,7 +95,30 @@ f2.grid_columnconfigure(4, weight=1)
 
 # ------------- CHOSE PLANT WINDOW -------------
 
-listeOfPlant = Canvas(f3, bg='ivory')
+# Create 4 plant for the list
+a = PlantsDict()
+a.loadPlantsFromFile()
+
+plant1 = Plant('Menthe', 10.0, 10, 10)
+plant2 = Plant('Coriandre', 10.0, 10, 10)
+plant3 = Plant('Radis', 10.0, 10, 10)
+plant4 = Plant('Carotte', 10.0, 10, 10)
+
+a.addPlant(plant1)
+a.addPlant(plant2)
+a.addPlant(plant3)
+a.addPlant(plant4)
+a.saveInFile()
+print(a.plants)
+
+#Window configuration
+#listeOfPlant = Canvas(f3, bg='ivory')
+
+listeOfPlant = Listbox(f3, bg='ivory', height=4, font=my_font)
+listeOfPlant.insert(END, plant1.name)
+listeOfPlant.insert(END, plant2.name)
+listeOfPlant.insert(END, plant3.name)
+listeOfPlant.insert(END, plant4.name)
 
 back = Button(f3, text="<-", command=lambda:raise_frame(f2))
 confirm = Button(f3, text="Confirm", command=lambda:raise_frame(f2))
