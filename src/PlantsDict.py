@@ -86,13 +86,13 @@ class PlantsDict(object):
     def findPlant(self, name):
         '''
         Find the plant in the dictionary having the given name
-        return False if there is no plant with this name in the dictionary
+        return None if there is no plant with this name in the dictionary
         '''
         if type(name) is str:
             if name in self._plants:
                 return self._plants[name]
             else:
-                return False
+                return None
         else :
             raise TypeError("Param 'name' given is not of type str")
         
