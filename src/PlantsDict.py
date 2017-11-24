@@ -117,5 +117,5 @@ class PlantsDict(object):
                 pickler.dump(self._plants)
                 return True
         except IOError:
-            print("IOError couldn't write the plants file")
+            print("IOError couldn't write the plants file {}").format(self._path)
             return False
