@@ -3,9 +3,10 @@ Created on 24 nov. 2017
 
 @author: Vincent RICHAUD
 '''
-from datetime import datetime
-from Plant import Plant
 import pickle
+import os
+from datetime import datetime
+from src.Plant import Plant
 
 class Records(object):
     '''
@@ -93,10 +94,8 @@ class Records(object):
         if not type(date) is datetime:
             raise TypeError("Param date given is not of type datetime")
         dateFound = []
-        for d in self._records:
+        for d in list(self._records):
             if d > date :
-                dateFound.append(d)
-        for d in dateFound:
                 del self._records[d]    
     
     def removeRecordBetween(self, date, endDate):
@@ -105,10 +104,8 @@ class Records(object):
         if not type(endDate) is datetime:
             raise TypeError("Param endDate given is not of type datetime")
         dateFound = []
-        for d in self._records:
+        for d in list(self._records):
             if d > date and d < endDate :
-                dateFound.append(d)
-        for d in dateFound:
                 del self._records[d] 
         
     def saveInFile(self, path):
@@ -122,6 +119,11 @@ class Records(object):
             return False
         
     def loadFromFile(self, path):
+        if not os.path.isfile(path):
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(path, 'wb') as file:
+                pickler = pickle.Pickler(file)
+                pickler.dump(Records())
         try:
             with open(path, 'rb') as file:
                 unpickler = pickle.Unpickler(file)
