@@ -1,3 +1,5 @@
+* AutoGarden
+
 You can find here the code for the AutoGarden project
 
 Current progession : Add the list of Plant available in the "database" with Plant and PlantDict object.

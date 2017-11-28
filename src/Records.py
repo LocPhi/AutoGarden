@@ -93,7 +93,6 @@ class Records(object):
     def removeRecordAfter(self, date):
         if not type(date) is datetime:
             raise TypeError("Param date given is not of type datetime")
-        dateFound = []
         for d in list(self._records):
             if d > date :
                 del self._records[d]    
@@ -103,7 +102,6 @@ class Records(object):
             raise TypeError("Param date given is not of type datetime")
         if not type(endDate) is datetime:
             raise TypeError("Param endDate given is not of type datetime")
-        dateFound = []
         for d in list(self._records):
             if d > date and d < endDate :
                 del self._records[d] 
