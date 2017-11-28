@@ -3,13 +3,19 @@ Created on 8 nov. 2017
 @author: Vincent RICHAUD
 '''
 
-from Plant import Plant
-from Position import Position
+from src.Plant import Plant
+from src.Position import Position
+from src.Records import *
 
 class Pot(object):
     '''
     This class represent a pot
     '''
+    
+    DEFAULT_POSITION_1 = Position(25,25)
+    DEFAULT_POSITION_2 = Position(25,75)
+    DEFAULT_POSITION_3 = Position(75,25)
+    DEFAULT_POSITION_4 = Position(75,75)
 
     def __init__(self, position, currentPlant=None):
         '''
@@ -18,6 +24,7 @@ class Pot(object):
         '''
         self._setCurrentPlant(currentPlant)
         self._setPosition(position)
+        self._records = Records()
         
     def __str__(self, *args, **kwargs):
         return str(self.__dict__)
@@ -41,7 +48,17 @@ class Pot(object):
     def _getCurrentPlant(self):
         return self._currentPlant
     
+    def _setRecords(self, records):
+        if type(records) is Records:
+            self._records = records
+        else:
+            raise TypeError("Param 'records' given is not of type Records")
+        
+    def _getRecords(self):
+        return self._records
+    
 #properties
     position = property(_getPosition, _setPosition)
     currentPlant = property(_getCurrentPlant, _setCurrentPlant)
+    records = property(_getRecords, _setRecords)
     
