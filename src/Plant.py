@@ -15,7 +15,7 @@ class Plant(object):
     TEMPERATURE_MIN = -40.0
     HUMIDITY_MAX = 100
     HUMIDITY_MIN = 0
-    
+    HUMIDITY_THRESHOLD = 5
 
     def __init__(self, name, temperature, humidity, luminosity):
         '''

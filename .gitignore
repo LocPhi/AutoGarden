@@ -9,3 +9,6 @@ src/__pycache__/PlantsDict.cpython-36.pyc
 src/__pycache__/Plant.cpython-36.pyc
 src/__pycache__/__init__.cpython-36.pyc
 src/__pycache__/Records.cpython-36.pyc
+src/__pycache__/ControlThread.cpython-36.pyc
+src/__pycache__/InterfaceThread.cpython-36.pyc
+src/__pycache__/Position.cpython-36.pyc
