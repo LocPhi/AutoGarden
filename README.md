@@ -1,8 +1,15 @@
 # AutoGarden
 
-You can find here the code for the AutoGarden project
+You can find here all the code of the AutoGarden project.
 
-Current progession : Add the list of Plant available in the "database" with Plant and PlantDict object.
-Next step : Developping a list of measures object -> integration in the graph of the graphic interface.
+----
+## What is AutoGarden?
 
-Developped by LocPhi & vincrichaud
+> AutoGarden is an engineering project which allow an automatisation of the watering of a plant.
+
+## Who are we ?
+> We are a 4 students group in last year of electronic/computing engineering school.
+
+---
+
+*developped by Raynoxis, vincrichaud & LocPhi*
