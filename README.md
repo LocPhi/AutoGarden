@@ -1,4 +1,4 @@
-* AutoGarden
+# AutoGarden
 
 You can find here the code for the AutoGarden project
 
