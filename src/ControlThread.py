@@ -7,13 +7,12 @@ import time
 from datetime import datetime
 #import src.com
 from threading import Thread, RLock
-from asyncio.locks import Lock
-from src import com
-from src.Records import Records
-from src.Records import Record
-from src.Pant import Plant
+from src.com import *
+from src.Records import *
+from src.Plant import Plant
+from src.Pot import Pot
 
-SECOND_BETWEEN_RECORD = 180
+SECOND_BETWEEN_RECORD = 1
 
 class ControlThread(Thread):
     '''
@@ -49,17 +48,22 @@ class ControlThread(Thread):
             time.sleep(SECOND_BETWEEN_RECORD)
             
             
+            
             for p in self._listPot:
-                print(p)
-                com.goto(p.position)
-                temperature = com.getTemperature()
-                humidity = com.getMoisture()
-                luminosity = com.getLuminosity()
+                print("__Control of the pot :")
+                print(p.position)
+                goto(p.position)
+                temperature = getTemperature()
+                humidity = getMoisture()
+                luminosity = getLuminosity()
                 record = Record(temperature, humidity, luminosity)
-                p.records.add(datetime.now(), record)
-                if(humidity < p.currentPlant.humidity - Plant.HUMIDITY_THRESHOLD):
-                    com.waterPlant()
+                print(record)
+                p.records.addRecord(datetime.now(), Record(temperature, humidity, luminosity))
+                if p.currentPlant != None:
+                    if(humidity < p.currentPlant.humidity - Plant.HUMIDITY_THRESHOLD):
+                        com.waterPlant()
                 with self._lock:
-                    p.records.saveInFile()
+                    p.records.saveInFile(p.pathToFile)
+                print("___ end of this control ___")
                 
     

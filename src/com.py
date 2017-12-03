@@ -10,12 +10,15 @@ def initCom():
     
 def getTemperature():
     time.sleep(1)
+    return 25.0
     
 def getMoisture():
     time.sleep(1)
+    return 70
     
 def getLuminosity():
     time.sleep(1)
+    return 250
     
 def waterPlant():
     time.sleep(1)

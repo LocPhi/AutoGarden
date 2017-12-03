@@ -16,8 +16,13 @@ class Pot(object):
     DEFAULT_POSITION_2 = Position(25,75)
     DEFAULT_POSITION_3 = Position(75,25)
     DEFAULT_POSITION_4 = Position(75,75)
+    
+    DEFAULT_PATH_1 = "../data/pot1"
+    DEFAULT_PATH_2 = "../data/pot2"
+    DEFAULT_PATH_3 = "../data/pot3"
+    DEFAULT_PATH_4 = "../data/pot4"
 
-    def __init__(self, position, currentPlant=None):
+    def __init__(self, position, pathToFile, currentPlant=None):
         '''
         Constructor
         Define the caracteristics of the pot
@@ -25,6 +30,7 @@ class Pot(object):
         self._setCurrentPlant(currentPlant)
         self._setPosition(position)
         self._records = Records()
+        self._setPathToFile(pathToFile)
         
     def __str__(self, *args, **kwargs):
         return str(self.__dict__)
@@ -57,8 +63,19 @@ class Pot(object):
     def _getRecords(self):
         return self._records
     
+    def _setPathToFile(self, pathToFile):
+        if not type(pathToFile) is str:
+            raise TypeError("Path given is not of type str")
+        else:
+            self._pathToFile = pathToFile
+    
+    def _getPathToFile(self):
+        return self._pathToFile
+    
 #properties
     position = property(_getPosition, _setPosition)
     currentPlant = property(_getCurrentPlant, _setCurrentPlant)
     records = property(_getRecords, _setRecords)
+    pathToFile = property(_getPathToFile, _setPathToFile)
+    
     

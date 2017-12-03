@@ -27,6 +27,10 @@ class Records(object):
         return self._records
     
     def _setRecords(self, records):
+        if type(records) is dict:
+            self._records = records
+        else :
+            raise TypeError("Param records given is not of type records")
         return
     
 #Properties
@@ -107,6 +111,8 @@ class Records(object):
                 del self._records[d] 
         
     def saveInFile(self, path):
+        if not os.path.isfile(path):
+            os.makedirs(os.path.dirname(path), exist_ok=True)
         try:
             with open(path, 'wb') as file:
                 pickler = pickle.Pickler(file)
@@ -118,10 +124,7 @@ class Records(object):
         
     def loadFromFile(self, path):
         if not os.path.isfile(path):
-            os.makedirs(os.path.dirname(path), exist_ok=True)
-            with open(path, 'wb') as file:
-                pickler = pickle.Pickler(file)
-                pickler.dump(Records())
+            self.saveInFile(path)
         try:
             with open(path, 'rb') as file:
                 unpickler = pickle.Unpickler(file)
