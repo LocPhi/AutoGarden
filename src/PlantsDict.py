@@ -22,7 +22,8 @@ class PlantsDict(object):
         if pathToPlantsFile == PlantsDict.DEFAULT_PATH:
             #if it does not exist, create it
             if not os.path.isfile(pathToPlantsFile):
-                os.makedirs(os.path.dirname(pathToPlantsFile), exist_ok=True)
+                if not os.path.isdir(os.path.dirname(pathToPlantsFile)):
+                    os.makedirs(os.path.dirname(pathToPlantsFile))
                 file = open(pathToPlantsFile, 'wb')
                 file.close()
         self._plants = {}

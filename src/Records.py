@@ -6,7 +6,7 @@ Created on 24 nov. 2017
 import pickle
 import os
 from datetime import datetime
-from src.Plant import Plant
+from Plant import Plant
 
 class Records(object):
     '''
@@ -125,14 +125,15 @@ class Records(object):
     def loadFromFile(self, path):
         if not os.path.isfile(path):
             self.saveInFile(path)
-        try:
-            with open(path, 'rb') as file:
-                unpickler = pickle.Unpickler(file)
-                self._records = unpickler.load()
-        except IOError:
-                print("IOError, the file {} couldn't be loaded").format(path)
+        else:
+            try:
+                with open(path, 'rb') as file:
+                    unpickler = pickle.Unpickler(file)
+                    self._records = unpickler.load()
+            except IOError:
+                    print("IOError, the file {} couldn't be loaded").format(path)
 
-        
+            
 class Record(object):
     '''
     This class is a tuple of 3 values

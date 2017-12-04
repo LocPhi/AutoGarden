@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # ------- Grenoble INP - ESISAR -------
 # -- PX504 : AutoGarden ---
 # ---- Author : Loc Phi ----
@@ -147,3 +149,4 @@ def main():
     
     raise_frame(f1)
     root.mainloop()
+

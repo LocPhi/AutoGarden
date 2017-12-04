@@ -3,9 +3,9 @@ Created on 8 nov. 2017
 @author: Vincent RICHAUD
 '''
 
-from src.Plant import Plant
-from src.Position import Position
-from src.Records import *
+from Plant import Plant
+from Position import Position
+from Records import *
 
 class Pot(object):
     '''

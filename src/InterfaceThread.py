@@ -5,7 +5,7 @@ Created on 27 nov. 2017
 '''
 import time
 from threading import Thread, RLock
-from src import Interface_Graphique
+import Interface_Graphique
 
 
 class InterfaceThread(Thread):

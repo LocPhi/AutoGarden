@@ -7,12 +7,12 @@ import time
 from datetime import datetime
 #import src.com
 from threading import Thread, RLock
-from src.com import *
-from src.Records import *
-from src.Plant import Plant
-from src.Pot import Pot
+import com
+from Records import *
+from Plant import Plant
+from Pot import Pot
 
-SECOND_BETWEEN_RECORD = 1
+SECOND_BETWEEN_RECORD = 10
 
 class ControlThread(Thread):
     '''
@@ -52,10 +52,10 @@ class ControlThread(Thread):
             for p in self._listPot:
                 print("__Control of the pot :")
                 print(p.position)
-                goto(p.position)
-                temperature = getTemperature()
-                humidity = getMoisture()
-                luminosity = getLuminosity()
+                com.goTo(p.position.x, p.position.y)
+                temperature = com.getTemperature()
+                humidity = com.getMoisture()
+                luminosity = com.getLuminosity()
                 record = Record(temperature, humidity, luminosity)
                 print(record)
                 p.records.addRecord(datetime.now(), Record(temperature, humidity, luminosity))

@@ -7,11 +7,11 @@ Created on 20 nov. 2017
 '''
 import time
 from threading import RLock
-from src.Pot import Pot
-from src.Position import Position
-from src.ControlThread import ControlThread
-from src.InterfaceThread import InterfaceThread
-from src.com import *
+from Pot import Pot
+from Position import Position
+from ControlThread import ControlThread
+from InterfaceThread import InterfaceThread
+import com 
 
 
 if __name__ == '__main__':
@@ -20,8 +20,9 @@ if __name__ == '__main__':
     
         
     #Initialize the communication with the arduinos
-    initCom()
+    com.initCom()
     time.sleep(1)
+    print('end init com')
     
     #lock for the thread to not access file at the same time
     lock = RLock()
@@ -43,10 +44,12 @@ if __name__ == '__main__':
     interfaceThread = InterfaceThread(lock, listPot)
 
     #Start the threads
+    print('start threads')
     controlThread.start()
     #interfaceThread.start()
     
     #wait for the thread to finish
+    print('wait for threads')
     #interfaceThread.join()
     controlThread.join()
     pass
