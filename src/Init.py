@@ -11,7 +11,8 @@ from Pot import Pot
 from Position import Position
 from ControlThread import ControlThread
 from InterfaceThread import InterfaceThread
-import com 
+import com
+import Interface_Graphique
 
 
 if __name__ == '__main__':
@@ -41,15 +42,13 @@ if __name__ == '__main__':
     
     #Define the threads
     controlThread = ControlThread(lock, listPot)
-    interfaceThread = InterfaceThread(lock, listPot)
-
+    
     #Start the threads
     print('start threads')
     controlThread.start()
-    #interfaceThread.start()
+    Interface_Graphique.main(lock)
     
     #wait for the thread to finish
     print('wait for threads')
-    #interfaceThread.join()
     controlThread.join()
     pass

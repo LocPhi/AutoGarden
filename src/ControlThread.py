@@ -4,7 +4,7 @@ Created on 27 nov. 2017
 @author: Vincent RICHAUD
 '''
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 #import src.com
 from threading import Thread, RLock
 import com
@@ -12,7 +12,7 @@ from Records import *
 from Plant import Plant
 from Pot import Pot
 
-SECOND_BETWEEN_RECORD = 10
+SECOND_BETWEEN_RECORD = 30
 
 class ControlThread(Thread):
     '''
@@ -62,6 +62,7 @@ class ControlThread(Thread):
                 if p.currentPlant != None:
                     if(humidity < p.currentPlant.humidity - Plant.HUMIDITY_THRESHOLD):
                         com.waterPlant()
+                p.records.removeRecordBefore(datetime.now() - timedelta(minutes = 30))
                 with self._lock:
                     p.records.saveInFile(p.pathToFile)
                 print("___ end of this control ___")
