@@ -23,4 +23,4 @@ class InterfaceThread(Thread):
         self._listPot = listPot
         
     def run(self):
-        Interface_Graphique.main()
+        Interface_Graphique.main(self._lock)
