@@ -12,3 +12,4 @@ src/__pycache__/Records.cpython-36.pyc
 src/__pycache__/ControlThread.cpython-36.pyc
 src/__pycache__/InterfaceThread.cpython-36.pyc
 src/__pycache__/Position.cpython-36.pyc
+*.pyc
