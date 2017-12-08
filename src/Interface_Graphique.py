@@ -327,9 +327,3 @@ def main(rlock, Liste):
 
     f1.tkraise()
     root.mainloop()
-
-    # For testing
-
-    # blabla = RLock()
-
-    # main(blabla, listPot)

@@ -5,14 +5,14 @@ Created on 27 nov. 2017
 '''
 import time
 from datetime import datetime, timedelta
-#import src.com
-from threading import Thread, RLock
+import threading
+from threading import *
 import com
 from Records import *
 from Plant import Plant
 from Pot import Pot
 
-SECOND_BETWEEN_RECORD = 30
+SECOND_BETWEEN_RECORD = 1
 
 class ControlThread(Thread):
     '''
@@ -28,6 +28,7 @@ class ControlThread(Thread):
         self._lock = None
         self._listPot = listPot
         self._setLock(lock)
+        self._shouldContinue =True 
        
     def __str__(self, *args, **kwargs):
         return str(self.__dict__)
@@ -39,32 +40,36 @@ class ControlThread(Thread):
     def _getLock(self):
         return self._lock
     
+    def _setShouldContinue(self, shouldContinue):
+        self._shouldContinue = shouldContinue
+        
+    def _getShouldContinue(self):
+        return self._shouldContinue
+
 #Properties
     lock = property(_getLock, _setLock)
+    shouldContinue = property(_getShouldContinue, _setShouldContinue)
     
 #Run
     def run(self):
-        while(1):
+        print('Control running...')
+        while(self._shouldContinue):
             time.sleep(SECOND_BETWEEN_RECORD)
             
-            
-            
             for p in self._listPot:
-                print("__Control of the pot :")
-                print(p.position)
-                com.goTo(p.position.x, p.position.y)
+                #com.goTo(p.position.x, p.position.y)
                 temperature = com.getTemperature()
                 humidity = com.getMoisture()
                 luminosity = com.getLuminosity()
                 record = Record(temperature, humidity, luminosity)
-                print(record)
-                p.records.addRecord(datetime.now(), Record(temperature, humidity, luminosity))
+                dtime = datetime.now()
+                p.records.addRecord(dtime, Record(temperature, humidity, luminosity))
                 if p.currentPlant != None:
                     if(humidity < p.currentPlant.humidity - Plant.HUMIDITY_THRESHOLD):
                         com.waterPlant()
-                p.records.removeRecordBefore(datetime.now() - timedelta(minutes = 30))
+                p.records.removeRecordBefore(dtime - timedelta(minutes = 30))
                 with self._lock:
                     p.records.saveInFile(p.pathToFile)
-                print("___ end of this control ___")
-                
+                msg = "_Control of Pot{} at {}:{}:{} done".format(self._listPot.index(p)+1, dtime.hour, dtime.minute, dtime.second)
+                print(msg)
     

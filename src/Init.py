@@ -5,7 +5,8 @@ Created on 20 nov. 2017
 @author: Vincent RICHAUD
 '''
 import time
-from threading import RLock
+import threading
+from threading import *
 from Pot import Pot
 from Position import Position
 from ControlThread import ControlThread
@@ -21,7 +22,7 @@ if __name__ == '__main__':
     time.sleep(1)
 
     # Initialize the communication with the arduinos
-    # com.initCom()
+    com.initCom()
     time.sleep(1)
     print('end init com')
 
@@ -56,12 +57,16 @@ if __name__ == '__main__':
     # Define the threads
     controlThread = ControlThread(lock, listPot)
 
-    # Start the threads
-    print('start threads')
-    # controlThread.start()
+    # Start the control thread
+    controlThread.start()
+    
+    #Start the IHM
     Interface_Graphique.main(lock, listPot)
+    print('IHM closed')
+    controlThread.shouldContinue = False
+    controlThread.join()
+    print('control finished')
+    
+    print(' - - - End of AutoGarden Program - - - ')
 
-    # wait for the thread to finish
-    print('wait for threads')
-    # controlThread.join()
     pass
