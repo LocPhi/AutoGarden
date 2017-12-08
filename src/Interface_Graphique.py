@@ -152,42 +152,46 @@ def create_graph_frame(frameToCreate):
     back = Button(frameToCreate, text="<-", command=lambda: raise_frame(frameToCreate, f1))
     if frameToCreate == f2:
         numFrame = 0
+        numberPot = Button(frameToCreate, text="POT 1", relief=SUNKEN)
         chose = Button(frameToCreate, text="Chose Plant", command=lambda: raise_frame(frameToCreate, f3))
         temp = Button(frameToCreate, text="Temperature", command=lambda: plottemp(potListe[numFrame], graph))
         hum = Button(frameToCreate, text="Humidity", command=lambda: plothum(potListe[numFrame], graph))
         lum = Button(frameToCreate, text="Luminosity", command=lambda: plotlum(potListe[numFrame], graph))
         if potListe[0].currentPlant is None:
-            current = Button(f2, text="Current Plant : None")
+            current = Button(f2, text="Current Plant : None", relief=SUNKEN)
         else:
             current = Button(f2, text="Current Plant : {}".format(potListe[numFrame].currentPlant.name))
     elif frameToCreate == f4:
         numFrame = 1
+        numberPot = Button(frameToCreate, text="POT 2", relief=SUNKEN)
         chose = Button(frameToCreate, text="Chose Plant", command=lambda: raise_frame(frameToCreate, f5))
         temp = Button(frameToCreate, text="Temperature", command=lambda: plottemp(potListe[numFrame], graph2))
         hum = Button(frameToCreate, text="Humidity", command=lambda: plothum(potListe[numFrame], graph2))
         lum = Button(frameToCreate, text="Luminosity", command=lambda: plotlum(potListe[numFrame], graph2))
         if potListe[1].currentPlant is None:
-            current = Button(f4, text="Current Plant : None")
+            current = Button(f4, text="Current Plant : None", relief=SUNKEN)
         else:
             current = Button(f4, text="Current Plant : {}".format(potListe[numFrame].currentPlant.name))
     elif frameToCreate == f6:
         numFrame = 2
+        numberPot = Button(frameToCreate, text="POT 3", relief=SUNKEN)
         chose = Button(frameToCreate, text="Chose Plant", command=lambda: raise_frame(frameToCreate, f7))
         temp = Button(frameToCreate, text="Temperature", command=lambda: plottemp(potListe[numFrame], graph3))
         hum = Button(frameToCreate, text="Humidity", command=lambda: plothum(potListe[numFrame], graph3))
         lum = Button(frameToCreate, text="Luminosity", command=lambda: plotlum(potListe[numFrame], graph3))
         if potListe[2].currentPlant is None:
-            current = Button(f6, text="Current Plant : None")
+            current = Button(f6, text="Current Plant : None", relief=SUNKEN)
         else:
             current = Button(f6, text="Current Plant : {}".format(potListe[numFrame].currentPlant.name))
     elif frameToCreate == f8:
         numFrame = 3
+        numberPot = Button(frameToCreate, text="POT 4", relief=SUNKEN)
         chose = Button(frameToCreate, text="Chose Plant", command=lambda: raise_frame(frameToCreate, f9))
         temp = Button(frameToCreate, text="Temperature", command=lambda: plottemp(potListe[numFrame], graph4))
         hum = Button(frameToCreate, text="Humidity", command=lambda: plothum(potListe[numFrame], graph4))
         lum = Button(frameToCreate, text="Luminosity", command=lambda: plotlum(potListe[numFrame], graph4))
         if potListe[3].currentPlant is None:
-            current = Button(f8, text="Current Plant : None")
+            current = Button(f8, text="Current Plant : None", relief=SUNKEN)
         else:
             current = Button(f8, text="Current Plant : {}".format(potListe[numFrame].currentPlant.name))
 
@@ -197,6 +201,7 @@ def create_graph_frame(frameToCreate):
     hum.grid(column=1, row=4, columnspan=1, sticky="news", padx=5, pady=5)
     lum.grid(column=1, row=5, columnspan=1, sticky="news", padx=5, pady=5)
     current.grid(column=2, row=0, columnspan=2, sticky="news", padx=5, pady=5)
+    numberPot.grid(column=1, row=0, columnspan=1, sticky="news", padx=5, pady=5)
 
     if frameToCreate == f2:
         graph.grid(column=2, row=2, columnspan=2, rowspan=4, sticky="news", padx=5, pady=5)
