@@ -166,7 +166,7 @@ def create_graph_frame(frameToCreate):
         temp = Button(frameToCreate, text="Temperature", command=lambda: plottemp(potListe[numFrame], graph2))
         hum = Button(frameToCreate, text="Humidity", command=lambda: plothum(potListe[numFrame], graph2))
         lum = Button(frameToCreate, text="Luminosity", command=lambda: plotlum(potListe[numFrame], graph2))
-        if potListe[0].currentPlant is None:
+        if potListe[1].currentPlant is None:
             current = Button(f4, text="Current Plant : None")
         else:
             current = Button(f4, text="Current Plant : {}".format(potListe[numFrame].currentPlant.name))
@@ -176,7 +176,7 @@ def create_graph_frame(frameToCreate):
         temp = Button(frameToCreate, text="Temperature", command=lambda: plottemp(potListe[numFrame], graph3))
         hum = Button(frameToCreate, text="Humidity", command=lambda: plothum(potListe[numFrame], graph3))
         lum = Button(frameToCreate, text="Luminosity", command=lambda: plotlum(potListe[numFrame], graph3))
-        if potListe[0].currentPlant is None:
+        if potListe[2].currentPlant is None:
             current = Button(f6, text="Current Plant : None")
         else:
             current = Button(f6, text="Current Plant : {}".format(potListe[numFrame].currentPlant.name))
@@ -186,7 +186,7 @@ def create_graph_frame(frameToCreate):
         temp = Button(frameToCreate, text="Temperature", command=lambda: plottemp(potListe[numFrame], graph4))
         hum = Button(frameToCreate, text="Humidity", command=lambda: plothum(potListe[numFrame], graph4))
         lum = Button(frameToCreate, text="Luminosity", command=lambda: plotlum(potListe[numFrame], graph4))
-        if potListe[0].currentPlant is None:
+        if potListe[3].currentPlant is None:
             current = Button(f8, text="Current Plant : None")
         else:
             current = Button(f8, text="Current Plant : {}".format(potListe[numFrame].currentPlant.name))
