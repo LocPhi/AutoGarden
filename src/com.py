@@ -2,6 +2,7 @@
 
 import serial
 import subprocess
+import time
 
 
 def initCom():
@@ -21,11 +22,13 @@ def initCom():
     nb = nbtry
 
     while (msg != '1') and (msg != '2') and (nb > 0):
-
+        
         try:
             connect = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-            connect.write('W'.encode('ascii'))
-            msg = str(connect.readline(1), 'ascii')
+            connect.reset_input_buffer()
+            connect.write('W;'.encode('ascii'))
+            time.sleep(1)
+            msg = str(connect.readline(), 'ascii')
 
         except Exception as e:
             print(e)
@@ -63,8 +66,10 @@ def initCom():
 
         try:
             connect = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
+            connect.reset_input_buffer()
             connect.write('W'.encode('ascii'))
-            msg = str(connect.readline(1), 'ascii')
+            time.sleep(1)
+            msg = str(connect.readline(), 'ascii')
 
         except Exception as e:
             print(e)
@@ -91,7 +96,16 @@ def initCom():
 
     # ---------------- Init ArduinoSMC ----------------#
 
+    msg=""
     arduino2.write("I;".encode('ascii'))
+    try:
+        while not msg == "IE":
+            msg += str(arduino2.read(), 'ascii')
+        arduino2.reset_output_buffer()
+        arduino2.reset_input_buffer()
+    except IOError:
+        subprocess.call(['ls', '/dev/tty*'])
+        
     arduino2.readline()
     arduino1.readline()
     arduino2.reset_input_buffer()
@@ -100,8 +114,9 @@ def initCom():
 
 
 def goTo(x, y):
-    msg = ('G') + str(x) + str(y) + (';')
+    msg = ('G') + str(x%100).zfill(2) + str(y%100).zfill(2) + (';')
     arduino2.write(msg.encode('ascii'))
+    msg = ""
     try:
         while not msg == "GE":
             msg += str(arduino2.read(), 'ascii')
@@ -111,7 +126,6 @@ def goTo(x, y):
     except IOError:
         subprocess.call(['ls', '/dev/tty*'])
 
-    return int(float(msg))
     return 0
 
 

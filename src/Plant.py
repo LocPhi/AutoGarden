@@ -37,10 +37,7 @@ class Plant(object):
         Setter for attribute name
         '''
         if type(name) is str:
-            if name.isalpha():
-                self._name = name
-            else:
-                raise ValueError("Param 'name' given is not alpha")
+            self._name = name
         else:
             raise TypeError("Param 'name' given is not str")
         

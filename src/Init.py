@@ -22,8 +22,11 @@ if __name__ == '__main__':
     time.sleep(1)
 
     # Initialize the communication with the arduinos
-    com.initCom()
-    time.sleep(1)
+    while com.initCom() == -1 :
+        print('connect arduinos failed, wait 10sec then retry')
+        time.sleep(10)
+    com.goTo(50,25)
+    time.sleep(20)
     print('end init com')
 
     # lock for the thread to not access file at the same time
@@ -43,10 +46,11 @@ if __name__ == '__main__':
 
     # Define Plants
     a = PlantsDict()
-    plant1 = Plant('Menthe', 10.0, 10, 10)
-    plant2 = Plant('Coriandre', 10.0, 10, 10)
-    plant3 = Plant('Radis', 10.0, 10, 10)
-    plant4 = Plant('Carotte', 10.0, 10, 10)
+    plant1 = Plant('Pervenche Major', 20.0, 90, 70)
+    plant2 = Plant('Sedum Rupestre', 20.0, 40, 70)
+    plant3 = Plant('Sedum Acre', 20.0, 40, 70)
+    plant4 = Plant('Oeillet Mignardise', 20.0, 65, 70)
+    plant5 = Plant('Menthe Commune', 20.0, 70, 70)
 
     a.addPlant(plant1)
     a.addPlant(plant2)

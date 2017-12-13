@@ -12,7 +12,7 @@ from Records import *
 from Plant import Plant
 from Pot import Pot
 
-SECOND_BETWEEN_RECORD = 1
+SECOND_BETWEEN_RECORD = 60
 
 class ControlThread(Thread):
     '''
@@ -54,22 +54,25 @@ class ControlThread(Thread):
     def run(self):
         print('Control running...')
         while(self._shouldContinue):
-            time.sleep(SECOND_BETWEEN_RECORD)
             
             for p in self._listPot:
-                #com.goTo(p.position.x, p.position.y)
+                msg = "_Control of Pot{}".format(self._listPot.index(p)+1)
+                print(msg)
+                com.goTo(p.position.x, p.position.y)
                 temperature = com.getTemperature()
                 humidity = com.getMoisture()
                 luminosity = com.getLuminosity()
                 record = Record(temperature, humidity, luminosity)
                 dtime = datetime.now()
                 p.records.addRecord(dtime, Record(temperature, humidity, luminosity))
-                if p.currentPlant != None:
-                    if(humidity < p.currentPlant.humidity - Plant.HUMIDITY_THRESHOLD):
-                        com.waterPlant()
-                p.records.removeRecordBefore(dtime - timedelta(minutes = 30))
+                #if p.currentPlant != None:
+                    #if(humidity < p.currentPlant.humidity - Plant.HUMIDITY_THRESHOLD):
+                        #com.waterPlant()
+                p.records.removeRecordBefore(dtime - timedelta(minutes = 15))
                 with self._lock:
                     p.records.saveInFile(p.pathToFile)
-                msg = "_Control of Pot{} at {}:{}:{} done".format(self._listPot.index(p)+1, dtime.hour, dtime.minute, dtime.second)
+                msg = "   done at {}:{}:{} ".format(dtime.hour, dtime.minute, dtime.second)
                 print(msg)
+            com.goTo(50,50)
+            time.sleep(SECOND_BETWEEN_RECORD)
     
