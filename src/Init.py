@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 '''
 Created on 20 nov. 2017
@@ -25,8 +26,7 @@ if __name__ == '__main__':
     while com.initCom() == -1 :
         print('connect arduinos failed, wait 10sec then retry')
         time.sleep(10)
-    com.goTo(50,25)
-    time.sleep(20)
+    time.sleep(1)
     print('end init com')
 
     # lock for the thread to not access file at the same time
@@ -69,7 +69,6 @@ if __name__ == '__main__':
     print('IHM closed')
     controlThread.shouldContinue = False
     controlThread.join()
-    print('control finished')
     
     print(' - - - End of AutoGarden Program - - - ')
 

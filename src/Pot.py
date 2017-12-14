@@ -12,10 +12,10 @@ class Pot(object):
     This class represent a pot
     '''
     
-    DEFAULT_POSITION_1 = Position(25,90)
-    DEFAULT_POSITION_2 = Position(70,90)
-    DEFAULT_POSITION_3 = Position(25,10)
-    DEFAULT_POSITION_4 = Position(70,10)
+    DEFAULT_POSITION_1 = Position(25,99)
+    DEFAULT_POSITION_2 = Position(70,99)
+    DEFAULT_POSITION_3 = Position(25,21)
+    DEFAULT_POSITION_4 = Position(70,21)
     
     DEFAULT_PATH_1 = "../data/pot1"
     DEFAULT_PATH_2 = "../data/pot2"
